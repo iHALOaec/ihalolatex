@@ -1,0 +1,1031 @@
+\documentclass[MTech]{iitmdiss}
+\usepackage{times}
+\usepackage{t1enc}
+\usepackage{graphicx}
+%\usepackage[hypertex]{hyperref}
+\usepackage{amsmath} 
+\usepackage{multicol}
+\usepackage{algpseudocode}
+\usepackage{fancyhdr}
+\usepackage{algorithm}
+\usepackage{array, booktabs, caption}
+\usepackage{ragged2e}
+%\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\usepackage{etoolbox}
+\begin{document}
+\nocite{*}
+\setcounter{equation}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+
+\title{EFFECTIVE KEY MANAGEMENT IN DYANMIC WIRELESS SENSOR NETWORKS}
+\regno{207358}
+\author{MIDHUN MOHAN}
+\guide{SANGEETHA JOSE}
+\pos{Assistant Professor}
+
+\date{JULY 2015}
+\department{INFORMATION TECHNOLOGY}
+
+\maketitle
+
+\certificate
+\vspace*{0.2in}
+\noindent 
+ \textit{Certified that the Seminar report entitled
+} \textbf{"Effective Key Management In Dynamic Wireless Sensor Networks"}\textit{ , is a bonafide work done by }\textbf{Mr. MIDHUN MOHAN (Reg No:207358)}\textit{ in partial fulfilment of the award of the Degree of Master of Technology in Information Technology (Specialization:Network Engineering) from Mahatma Gandhi University, Kottayam, Kerala during the academic year 2014-15.}
+\\ \\ \\ \\
+\vspace*{1.2in}
+\hspace{.25in}
+\begin{minipage}{0.18\textwidth}
+\centerline{\bf Prof. Sangeetha Jose} 
+\centerline{Faculty Guide} 
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\hspace{0.15\textwidth}
+\end{minipage}
+\begin{minipage}{0.18\textwidth}
+\centerline{\bf Prof. K R Remesh Babu} 
+\centerline{Head of the Department} 
+\end{minipage}
+\newline
+\vspace{.2in}
+\hspace{.25in}
+\begin{minipage}{0.18\textwidth}
+ \centerline{\bf Prof. Ratheesh T.K}
+ \centerline{Seminar Co-ordinator}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\hspace{0.15\textwidth}
+\end{minipage}
+\begin{minipage}{0.18\textwidth}
+\centerline{\bf Prof. Geethu K Mohan}
+ \centerline{Seminar Co-ordinator}
+\end{minipage}
+ \vspace{3pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acknowledgements
+\newgeometry{bottom=1.0in}
+
+\acknowledgements
+\textit{First and foremost I praise and thank GOD, the foundation of all wisdom from depth of my heart for being the unfailing source of strength. If words are considered as symbols of approval, and tokens of acknowledgement, then let the following words play the heading role of expressing my gratitude. Beyond good there are dozens of individuals, who have helped me long the way. I would like to add a few heartfelt that to these people who were a part of my seminar work in numerous ways.
+\\ \\Next, I thank \textbf{Dr. J David}, Principal and \textbf{Prof. K.R Remesh Babu}, Head of the Department of Information Technology, for providing new dimensions to my Engineering course.\\ \newline
+I am deeply indebted to \textbf{Prof. Sangeetha Jose}, internal guide for her careful attention and support to my work. I would like to express my deepest appreciation to my advisor for helping me to overcome several constraints.\\ \newline
+I thank \textbf{Prof. Ratheesh T.K} and \textbf{Prof. Geethu K Mohan} , Seminar Coordinators for their support and supervision on the success of my work.\\ \newline
+I extent my special thanks to all my friends for their enthusiastic encouragement and full support. More than anybody else, I am grateful to my parents for their encouragement, support and blessing.}
+\vspace*{24pt}
+
+\begin{flushright}MIDHUN MOHAN\end{flushright}
+                              
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abstract
+
+\abstract
+
+\noindent KEYWORDS: \hspace*{0.5em} \parbox[t]{4.4in}{\textit{Certificate-less, Assymmetric, Pairwise Key, Individual Key, Cluster Key, Adversary Attacks,
+, Key Updates, Security Analysis, Performance Analysis}}
+
+\vspace*{24pt}
+
+\noindent 
+Recently, wireless sensor networks (WSNs) have
+been deployed for a wide variety of applications, including
+military sensing and tracking, patient status monitoring, traffic
+flow monitoring, where sensory devices often move between
+different locations. Since we are relaying sensitive information security becomes major concern. Securing data and communications requires
+suitable encryption key protocols. Since sensoring devices are resource constrained they are subjected to adapt encryption schemes like Elliptic Curve Cryptography. Since they are providing considerable security with small key size. So major attention is on management of those keys.Here proposing a
+certificateless-effective key management (CL-EKM) protocol for
+secure communication in dynamic WSNs considering node
+mobility. The CL-EKM supports efficient key updates when a
+node leaves or joins a cluster and ensures forward and backward
+key secrecy. The protocol can support key revocation
+for compromised nodes and minimizes the impact of a node
+compromise on the security of other communication links.
+A security analysis of this scheme shows this protocol is effective against various attacks. Also on implementing under optimal configured devices, performance is improved as compared to other schemes on this trend.
+\pagebreak
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of contents etc.
+
+\begin{singlespace}
+\tableofcontents
+\thispagestyle{empty}
+\listoftables
+\addcontentsline{toc}{chapter}{LIST OF TABLES}
+\listoffigures
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+\end{singlespace}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abbreviations
+\abbreviations
+
+\noindent 
+\begin{tabbing}
+xxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
+\textbf{BS}   \> Base Station  \\
+\textbf{KGC} \> Key Generation Center \\
+\textbf{ECC} \> Elliptic Curve Cryptography \\
+\textbf{DH} \> Diffie Hellman \\
+\textbf{EC-CDH} \> Computational Diffie Hellman Problem \\
+\textbf{WSN} \> Wireless Sensor Network \\
+\end{tabbing}
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Notation
+
+\chapter*{\centerline{NOTATION}}
+\addcontentsline{toc}{chapter}{NOTATION}
+
+\begin{singlespace}
+\begin{tabbing}
+xxxxxxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
+\textbf{$L_i$}  \> Unique identifier for an $L$-sensor node \\
+\textbf{$H_j$}  \> Unique identifier for an $H$-sensor node \\
+\textbf{$q$}   \> a $k$-bit prime number\\
+\textbf{$P_{pub}$}   \> System Public key of KGC \\
+\textbf{$x$}   \> Master private key of KGC \\
+\textbf{$P$}   \> Point Generartor of an Additive Cyclic Group  \\
+\textbf{$sk_A$}   \> Full Private key of node $A$ \\
+\textbf{$pk_A$}   \> Full Public key of node $A$ \\
+\textbf{${K^0}_A$}   \> Individual Key of a node $A$ \\
+\textbf{$K_{AB}$}   \> Pairwise Master key between node $A$ and $B$\\
+\textbf{$k_{AB}$}   \> Pairwise Encryption key between node $A$ and $B$\\
+\textbf{$GK_j$}   \> Cluster Key shared among $J^{th}$ Cluster \\
+\textbf{$M$}   \> Member List of all Legitimate nodes at BS \\
+\textbf{$HMAC(k,m)$}   \> Message Authentication Code of $m$ using $k$\\
+\textbf{$E_k(m)$}   \> Encryption Algorithm to encrypt $m$ using $k$  \\
+\textbf{$E/F_q$}   \> Elliptic Curve over the Field $F_q$\\
+\textbf{${\mathbb{Z}^*}_q$}   \> Multiplicative Group of integers modulo $q$\\
+\end{tabbing}
+\end{singlespace}
+
+\pagebreak
+\clearpage
+
+% The main text will follow from this point so set the page numbering
+% to arabic from here on.
+\pagenumbering{arabic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction.
+\newgeometry{left=1.5in,right=1in,top=1in,bottom=1.9in}
+\pagestyle{fancy}
+\rhead{}
+\lhead{\textit{Effective Key Management in Dynamic Wireless Sensor Networks}}
+\lfoot{\textit{Department Of Information Technology}}
+\rfoot{\thepage}
+\cfoot{\*}
+\renewcommand{\footrulewidth}{1pt}
+\renewcommand{\headrulewidth}{1pt}
+\setlength{\headsep}{0.4in}
+
+
+\chapter{INTRODUCTION}
+\label{chap:intro}
+Dynamic wireless sensor networks (WSNs), which
+enable mobility of sensor nodes, facilitate wider network
+coverage and more accurate service than static WSNs. Therefore, dynamic WSNs are being rapidly adopted in monitoring
+applications, such as target tracking in battlefield surveillance,
+healthcare systems, traffic flow and vehicle status monitoring,
+dairy cattle health monitoring [12]. However, sensor devices
+are vulnerable to malicious attacks such as impersonation,
+interception, capture or physical destruction, due to their
+unattended operative environments and lapses of connectivity
+in wireless communication [15]. Thus, security is one of
+the most important issues in many critical dynamic WSN
+applications. Dynamic WSNs thus need to address key security
+requirements, such as node authentication, data confidentiality
+and integrity, whenever and wherever the nodes move.
+\\
+To address security, encryption key management protocols
+for dynamic WSNs have been proposed in the past based on symmetric key encryption [4][7]-[8]. Such type of encryption is well-suited for sensor nodes because of their limited
+energy and processing capability. However, it suffers from high
+communication overhead and requires large memory space to
+store shared pairwise keys. It is also not scalable and not
+resilient against compromises, and unable to support node
+mobility. Therefore symmetric key encryption is not suitable
+for dynamic WSNs. More recently, asymmetric key based
+approaches have been proposed for dynamic WSNs. These approaches take advantage
+of public key cryptography (PKC) such as elliptic curve
+cryptography (ECC) or identity-based public key cryptography (ID-PKC) in order to simplify key establishment and
+data authentication between nodes. PKC is relatively more
+expensive than symmetric key encryption with respect to
+computational costs.
+\\However, recent improvements in the
+implementation of ECC have demonstrated the feasibility
+of applying PKC to WSNs. Moreover, PKC is more
+resilient to node compromise attacks and is more scalable
+and flexible. However, found the security weaknesses
+of existing ECC-based schemes [3], [19], [6] that these
+approaches are vulnerable to message forgery, key compromise
+and known-key attacks. Also, analyzed the critical security
+flaws of [11] that the static private key is exposed to the other
+when both nodes establish the session key. Moreover, these
+ECC-based schemes with certificates when directly applied
+to dynamic WSNs, suffer from the certificate management
+overhead of all the sensor nodes and so are not a practical
+application for large scale WSNs. The pairing operation-based ID-PKC schemes are inefficient due to the
+computational overhead for pairing operations. \\Here proposes a certificateless effective key
+management (CL-EKM) scheme for dynamic WSNs. In certificateless public key cryptography (CL-PKC) [2], the user's
+full private key is a combination of a partial private key
+generated by a key generation center (KGC) and the user's own
+secret value. The special organization of the full private/public
+key pair removes the need for certificates and also resolves the
+key escrow problem by removing the responsibility for the
+user's full private key. Also take the benefit of ECC keys
+defined on an additive group with a 160-bit length as secure
+as the RSA keys with 1024-bit length.
+In order to dynamically provide both node authentication and establish a pairwise key between nodes, uses
+CL-EKM by utilizing a pairing-free certificateless hybrid
+signcryption scheme (CL-HSC) proposed[16]. Due to the properties of CL-HSC, the
+pairwise key of CL-EKM can be efficiently shared between
+two nodes without requiring taxing pairing operations and
+the exchange of certificates. To support node mobility, CL-EKM also supports lightweight processes for cluster key
+updates executed when a node moves, and key revocation is
+executed when a node is detected as malicious or leaves the
+cluster permanently. CL-EKM is scalable in case of additions
+of new nodes after network deployment. CL-EKM is secure
+against node compromise, cloning and impersonation, and
+ensures forward and backward secrecy.
+
+\clearpage
+\pagebreak
+\chapter{LITERATURE SURVEY}
+\label{chap:lit}
+Symmetric key schemes are not viable for mobile sensor
+nodes and thus past approaches have focused only on static
+WSNs. A few approaches have been proposed based on PKC
+to support dynamic WSNs.
+Chuang et al. [5] and Agrawal et al. [1] proposed a
+two-layered key management scheme and a dynamic
+key update protocol in dynamic WSNs based on the Diffie-Hellman
+(DH), 	respectively. However, both schemes [5], [1] are not suited for sensors with limited
+resources and are unable to perform expensive computations
+with large key sizes (e.g. at least 1024 bit). Since ECC is
+computationally more efficient and has a short key length
+(e.g. 160 bit), several approaches with certificate [3], [19],
+[11], [6] have been proposed based on ECC. However,
+since each node must exchange the certificate to establish
+the pairwise key and verify each other's certificate before
+use, the communication and computation overhead increase
+dramatically. Also, the BS suffers from the overhead of
+certificate management. Moreover, existing schemes [3], [19],
+[11], [6] are not secure. \\Alagheband et al. [3] proposed a key
+management scheme by using ECC-based signcryption, but
+this scheme is insecure against message forgery attacks.
+Huang et al. [11] proposed a ECC-based key establishment
+scheme for self-organizing WSNs. However,it found the
+security weaknesses of their scheme. In step 2 of their scheme,
+a sensor node $U$ sends $z = q_U·H(MacKey)+d_U(modn)$
+to the other node $V$ for authentication, where $q_U$ is a
+static private key of $U$ . But, once $V$ receives the $z$, it
+can disclose $q_U$ , because $V$ already got MacKey and
+$d_U$ in step 1. So, $V$ can easily obtain $q_U$ by computing
+$q_U = (z-d_U ) · H (MacKey)^{-1}$ . Thus, the sensor node's
+private key is exposed to the other node during the key
+establishment between two nodes.\\ \\ \\Zhang et al. [19] proposed
+a distributed deterministic key management scheme based on
+ECC for dynamic WSNs. It uses the symmetric key approach
+for sharing the pairwise key for existing nodes and uses an
+asymmetric key approach to share the pairwise keys for a
+new node after deployment. However, since the initial key $K_I$
+is used to compute the individual keys and the pairwise keys
+after deployment for all nodes, if an adversary obtains $K_I$ , the
+adversary has the ability to compute all individual keys and
+the pairwise keys for all nodes. Thus, such scheme suffers
+from weak resilience to node compromises. Also, since
+such scheme uses a simple ECC-based DH key agreement
+by using each node's long-term public key and private
+key, the shared pairwise key is static and as a result, is
+not secure against known-key attacks and cannot provide
+re-key operation. \\ Du et al. [6] use a ECDSA scheme to
+verify the identity of a cluster head and a static EC-Diffie-
+Hellman key agreement scheme to share the pairwise key
+between the cluster heads. Therefore, the scheme by Du
+et al. is not secure against known-key attacks, because the
+pairwise key between the cluster heads is static. On the other
+hand, Du et al. use a modular arithmetic-based symmetric
+key approach to share the pairwise key between a sensor
+node and a cluster head. Thus, a sensor node cannot directly
+establish a pairwise key with other sensor nodes and, instead,
+it requires the support of the cluster head. In their scheme, in
+order to establish a pairwise key between two nodes in the
+same cluster, the cluster head randomly generates a pairwise
+key and encrypts it using the shared keys with these two
+nodes. Then the cluster head transmits the encrypted pairwise
+key to each node. Thus, if the cluster head is compromised,
+the pairwise keys between non-compromised sensor nodes
+in the same cluster will also be compromised. Therefore, their scheme is not compromise-resilient against cluster
+head capture, because the cluster head randomly generates a
+pairwise key between sensor nodes whenever it is requested
+by the nodes. Moreover, in their scheme, in order to share a
+pairwise key between two nodes in different clusters, these
+two nodes must communicate via their respective cluster
+heads. So, after one cluster head generates the pairwise
+key for two nodes, the cluster head must securely transmit
+this key to both its node and the other cluster head. Thus,
+this pairwise key should be encrypted by using the shared
+pairwise key with the other cluster head and the shared key
+with its node, respectively. Therefore, if the pairwise key
+between the cluster heads is exposed, all pairwise keys of the
+two nodes in different clusters are disclosed. The scheme by
+Du et al. supports forward and backward secrecy by using a
+key update process whenever a new node joins the cluster
+or if a node is compromised. However, the scheme does not
+provide a process to protect against clone and impersonation
+attack.
+\pagebreak
+\chapter{SYSTEM STUDY}
+\label{chap:sysstud}
+\section{Network Model}
+Here consider a heterogeneous dynamic wireless sensor
+network (See Fig.\ref{f2}). The network consists of a number of
+stationary or mobile sensor nodes and a BS that manages the
+network and collects data from the sensors. Sensor nodes can
+be of two types: (i) nodes with high processing capabilities,
+referred to as $H$ -sensors, and (ii) nodes with low processing
+capabilities, referred to as $L$-sensors.\\
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=.55]{c1.jpg}
+\caption{Heterogeneous WSN\label{overflow}}
+\label{f2}
+\end{figure}\\
+It is assumed to have $N$ nodes in the network with a number $N_1$ of $H$-sensors
+and a number $N_2$ of $L$-sensors, where $N = N_1 + N_2$ , and
+$N_1<<N_2$ . Nodes may join and leave the network, and thus
+the network size may dynamically change. The $H$-sensors act
+as cluster heads while $L$-sensors act as cluster members. They
+are connected to the BS directly or by a multi-hop path through
+other $H$-sensors. $H$-sensors and $L$-sensors can be stationary or
+mobile. After the network deployment, each $H$-sensor forms
+a cluster by discovering the neighboring $L$-sensors through
+beacon message exchanges. The $L$-sensors can join a cluster,
+move to other clusters and also re-join the previous clusters.
+To maintain the updated list of neighbors and connectivity,
+the nodes in a cluster periodically exchange very lightweight
+beacon messages. \\The $H$-sensors report any changes in their
+clusters to the BS, for example, when a L-sensor leaves or
+joins the cluster. The BS creates a list of legitimate nodes,
+$M$, and updates the status of the nodes when an anomaly
+node or node failure is detected. The BS assigns each node
+a unique identifier. A $L$-sensor $n_{L_i}$ is uniquely identified by
+node ID $L_i$ whereas a $H$-sensor $n_{H_j}$ is assigned a node ID $H_j$ .
+A Key Generation Center (KGC), hosted at the BS, generates
+public system parameters used for key management by the
+BS and issues certificateless public/private key pairs for each
+node in the network. \\In this system, a unique
+individual key, shared only between the node and the BS is
+assigned to each node. The certificateless public/private key
+of a node is used to establish pairwise keys between any two
+nodes. A cluster key is shared among the nodes in a cluster.
+
+\section{Expected Security Threats}
+It is assumed that the adversary can mount a physical attack
+on a sensor node after the node is deployed and retrieve secret
+information and data stored in the node. The adversary can also
+populate the network with the clones of the captured node.
+Even without capturing a node, an adversary can conduct an
+impersonation attack by injecting an illegitimate node, which
+attempts to impersonate a legitimate node. Adversaries can
+conduct passive attacks, such as, eavesdropping, replay attack,
+etc to compromise data confidentiality and integrity. 
+\pagebreak
+\chapter{PROPOSED APPROACH}
+\label{chap:propos}
+\section{Types of Keys}
+\begin{itemize}
+\item {\bf Certificateless Public/Private Key:} Before a node is
+deployed, the KGC at the BS generates a unique
+certificateless private/public key pair and installs the keys
+in the node. This key pair is used to generate a mutually
+authenticated pairwise key.
+\\
+\\
+\item {\bf Individual Node Key:} Each node shares a unique
+individual key with BS. For example, a $L$-sensor can use
+the individual key to encrypt an alert message sent to
+the BS, or if it fails to communicate with the $H$-sensor.
+An $H$-sensor can use its individual key to encrypt the
+message corresponding to changes in the cluster. The
+BS can also use this key to encrypt any sensitive data,
+such as compromised node information or commands.
+Before a node is deployed, the BS assigns the node the
+individual key.
+\\
+\\
+\item {\bf Pairwise Key:} Each node shares a different pairwise key
+with each of its neighboring nodes for secure communi-
+cations and authentication of these nodes. For example, in
+order to join a cluster, a $L$-sensor should share a pairwise
+key with the $H$-sensor. Then, the $H$-sensor can securely
+encrypt and distribute its cluster key to the $L$-sensor
+by using the pairwise key. Each node can dynamically establish the pairwise key between itself
+and another node using their respective certificateless
+public/private key pairs.
+\\
+\\
+\item {\bf Cluster Key:} All nodes in a cluster share a key, named as
+cluster key. The cluster key is mainly used for securing
+broadcast messages in a cluster. Only the
+cluster head can update the cluster key when a $L$-sensor
+leaves or joins the cluster.
+\end{itemize}
+\section{CL-EKM}
+The CL-EKM is comprised of 7 phases: {\bf System setup,
+Pairwise key generation, Cluster formation, Key update, Node
+movement,} and {\bf Addition of a new node}.
+\subsection{System Setup}
+Before the network deployment, the BS generates system
+parameters and registers the node by including it in a member
+list M.
+\subsubsection{Generation of System Parameters}
+The KGC at the BS runs the following steps by taking a security parameter
+$k$ \in ${\mathbb{Z}^+}$ as the input, and returns a list of system parameter
+\ss=\{$F_q,E/F_q,G_q,P,P_{pub}=xP,h_0,h_1,h_2,h_3$\} and $x$.
+ \begin{itemize}
+  
+  \item $q$ is $k$-bit prime
+  \item $x$ is selected by BS such that $x$ \in  ${\mathbb{Z}^*}_q$
+  \item $P_{pub}$ is the System public key
+  \item $h_0$,$h_1$,$h_2$,$h_3$ represents hash functions
+  \item $h_0$:$\{{0,1}\}^*$ \times ${G_q}^2$ \rightarrow $\{{0,1}\}^*$
+  \\ $h_1$:${G_q}^3$ \times $\{{0,1}\}^*$ \times ${G_q}$ \rightarrow $\{{0,1}\}^n$
+  \\ $h_2$:$G_q$ \times $\{{0,1}\}^*$ \times $G_q$ \times $\{{0,1}\}^*$ \times $G_q$ \times $\{{0,1}\}^*$ \times $G_q$ \rightarrow ${\mathbb{Z}^*}_q$.
+  \\ $h_3$:$G_q$ \times $\{{0,1}\}^*$ \times $G_q$ \times $\{{0,1}\}^*$ \times $G_q$ \times $\{{0,1}\}^*$ \times $G_q$ \rightarrow ${\mathbb{Z}^*}_q$.
+  \item BS keep $x$ as secret and publish \ss
+\item BS keeps a member list:node identifier and public keys of registered nodes
+  \item A list of revoked nodes.
+ \end{itemize}
+\subsubsection{Node Registration}
+The BS assigns a unique identifier,denoted by $L_i$ , to each $L$-sensor $n_{L_i}$ and a unique identifier,
+denoted by $H_j$ , to each $H$-sensor $n_{H_j}$. During
+initialization, each node $n_{L_i}$ chooses a secret value $x_{L_i}$ \in ${\mathbb{Z}^*}_q$
+and computes $P_{L_i}$=$x_{L_i}P$. Then, the BS requests the KGC
+for partial private/public keys of $n_{L_i}$ with the input parameters
+$L_i$ and $P_{L_i}$ . The KGC chooses $r_{L_i}$ \in ${\mathbb{Z}^*}_q$ and then computes
+a pair of partial public/private key $(R_{L_i},d_{L_i})$ as below:\\
+\begin{equation}
+ R_{L_i}=r_{L_i}P
+\end{equation}
+\begin{equation}
+ d_{L_i}=r_{L_i}+x.h_0({L_i},R_{L_i},P_{L_i})mod q
+\end{equation}
+The $L_i$ can validate its private key by checking whether the condition $d_{L_i}.P = R_{L_i}+h_0(L_i,R_{L_i},P_{L_i})P_{pub}$ holds.
+$L_i$ then sets $sk_{L_i}$=$(d_{L_i}$,$x_{L_i})$ as its full private key and
+$pk_{L_i}$=$(P_{L_i}$,$R_{L_i})$ as its full public key. The BS also chooses
+a uniform random number $x^0$ \in ${\mathbb{Z}^*}_q$ to generate the node's individual key.
+Individual key computed as an $HMAC$ of $x^0$ , $L_i$ as follows 
+\begin{equation}
+ {K^0}_{L_i}=HMAC(x^0,L_i)
+\end{equation}After the key generation for all the nodes, the BS generates
+a member list M consisting of identifiers and public keys
+of all these nodes. It also initializes a revocation list R that
+enlists the revoked nodes. The public/private key, , and the
+individual key are installed in the memory of each node.
+\subsection{Pairwise Key Generation}
+After the network deployment, a node may broadcast an
+advertisement message to its neighborhood to trigger the
+pairwise key setup with its neighbors. The advertisement
+message contains its identifier and public key. At first, two
+nodes set up a long-term pairwise master key between them,
+which is then used to derive the pairwise encryption key. The
+pairwise encryption key is short-term and can be used as a
+session key to encrypt sensed data.
+\subsubsection{Pairwise Master Key Establishment}
+When $n_A$ receives an advertisement message from $n_B$ ,
+it executes the following encapsulation process to generate a
+long-term pairwise master key $K_{AB}$ and the encapsulated key
+information,($U_A$,$W_A$). Below table shows the mechanism between nodes.  
+\begin{table}[H]
+\label{ta1}
+\begin{tabular}{|p{6cm} p{2cm} >{\RaggedLeft}p{6cm}|}
+\hline
+{\bf Sensor Node($n_{A}$).}&&{\bf Sensor Node($n_{B}$).}
+\\
+&\longleftarrow&\scriptsize  $(B,pk_{B})$
+\\
+\scriptsize $U_A$=$l_AP$, $l_A$ \in ${\mathbb{Z}^*}_q$&&
+\\
+\scriptsize $T_A$=$l_A$.$h_0(B,R_B,P_B)P_{pub}+l_A.R_B mod q$&&
+\\
+
+\scriptsize $K_{AB}$=$h_1(U_A,T_A,l_A.P_B,B,P_B)$&&
+\\
+\scriptsize h=$h_2(U_A,{\tau}_A,T_A,A,P_A,B,P_B)$&&
+\\
+\scriptsize h'=$h_3(U_A,{\tau}_A,T_A,A,P_A,B,P_B)$&&
+\\
+\scriptsize $W_A$=$d_A+l_A.h+x_A.h^'$ &&   \\
+
+\scriptsize ($A,{pk}_A$,${\tau}_A$,($U_A$,$W_A$))&\longrightarrow &   \\
+&&\scriptsize $T_A$=$d_B$.$U_A$\\
+&&\scriptsize compute h,h'   \\
+&&\scriptsize $K_{AB}$=$h_1(U_A,T_A,x_B.U_A,B,P_B)$\\
+\hline
+\end{tabular}
+\caption{Pairwise Master Key Generation}
+\end{table}At $n_B$ if $W_A.P=R_A+h_0(A,R_A,P_A).P_{pub}+h.U_A+h'.P_A$} holds,
+if yes then output $K_{AB}$=$h_1(U_A,T_A,x_B.U_A,B,P_B)$. Otherwise, output invalid.
+\subsubsection{Pairwise Encryption Key Establishment}
+Once $n_A$ and $n_B$ set the pairwise master key $K_{AB}$, they generate
+an $HMAC$ of $K_{AB}$ and a nonce $r \in {\mathbb{Z}^*}_q$. The $HMAC$ is then
+validated by both $n_A$ and $n_B$ . If the validation is successful,
+the $HMAC$ value is established as the short-term pairwise
+encryption key $k_{AB}$. The process is summarized below:
+\begin{table}[H]
+\label{tab1}
+\begin{tabular}{|p{6cm} p{2cm} >{\RaggedLeft}p{6cm}|}
+\hline
+{\bf Sensor Node($n_{A}$).}&&{\bf Sensor Node($n_{B}$).}
+\\
+\scriptsize  r \in ${\mathbb{Z}^*}_q$&&
+\\
+\scriptsize $k_{AB}$=$HMAC(K_{AB},r)$&&
+\\
+
+\scriptsize $C_1$=$E_{k_{AB}}(r,A,B)$&&
+\\
+\scriptsize $(r,C_1)$&\longrightarrow &
+\\
+&&\scriptsize $k_{AB}$=$HMAC(K_{AB},r)$
+\\
+&&\scriptsize Validate against $C_1$   \\
+ \hline
+\end{tabular}
+\caption{Pairwise Encryption Key Generation}
+\end{table}
+\subsection{Cluster Formation}
+Once the nodes are deployed, each H -sensor discovers
+neighboring $L$-sensors through beacon message exchanges and
+then proceeds to authenticate them. If the authentication is
+successful, the $H$-sensor forms a cluster with the authenticated $L$-sensors and they share a common cluster key. The
+$H$-sensor also establishes a pairwise key with each member
+of the cluster. To simplify the discussion, we focus on the
+operations within one cluster and consider the $j^{th}$ cluster.
+We also assume that the cluster head $H$-sensor is $n_{H_j}$ with
+$n_{L_i}$ as cluster members. $n_{H_j}$ establishes a cluster
+key $G_{K_j}$ for secure communication in the cluster. Following Discussions deals with steps in cluster formation.
+\subsubsection{Node Discovery and Authentication}
+For node discovery,$n_{H_j}$ broadcasts an advertisement message containing
+${H_j}$ and $pk_{H_j}$. Once $n_{L_i}$ within ${H_j}$'s radio range receives
+the advertisement, it checks ${H_j}$ and $pk_{H_j}$, and initiates
+the Pairwise Key Generation procedure. Note that $n_{L_i}$ may
+receive multiple advertisement messages if it is within the
+range of more than one $H$-sensor. However, $n_{L_i}$ must choose
+one $H$-sensor, may be by prioritizing over the proximity and
+signal strength. Additionally, $n_{L_i}$ can record other $H$-sensor
+advertisements as backup cluster heads in the event that the
+primary cluster head is disabled. If $n_{L_i}$ selects multiple cluster
+heads and sends a response to all of them, it is considered as a compromised node. $n_{L_i}$ and $n_{H_j}$ perform the Pairwise Key
+Generation procedure to obtain a pairwise master key, $K_{L_i H_j}$ and a pairwise encryption key, $k_{L_i H_j}$.
+\subsubsection{Cluster Key Generation}
+$n_{H_j}$ chooses $x_j$ \in ${\mathbb{Z}^*}_q$ to
+generate a cluster key $GK_j$ as follows:
+\begin{equation}
+ GK_j=HMAC(x_j,H_j)
+\end{equation}
+Then, $n_{H_j}$ computes $C_2$=$E_{k_{L_i H_j}}(GK_j,H_j,L_i)$) to distribute
+the $GK_j$. Then $n_{H_j}$ sends $(H_j,C_2)$ to $n_{L_i}$ . $n_{L_i}$ decrypts
+$C_2$ to recover $H_j$, $L_i$ and $GK_j$ by using $k_{L_i H_j}$ . If $n_{L_i}$ fails to
+check $H_j$, $L_i$, it discards the message and reports. Otherwise, $n_{L_i}$ confirms that
+$n_{H_j}$ is valid and can compute $GK_j$. Then, $n_{L_i}$ stores $GK_j$ as
+a cluster key. Next, $n_{L_i}$ acknowledges $n_{H_j}$. After $n_{H_j}$ receives messages checks the validity. If the check fails, discards
+the message. Otherwise, $n_{H_j}$ can confirm that $n_{L_i}$ shares the
+valid $GK_j$ and $k_{L_i H_j}$. $n_{H_j}$ adds $L_i$ and $pk_{L_i}$ on member list
+of the $j^{th}$ cluster, $M_j$. Process can be summarized as below:
+\begin{table}[H]
+\label{tab23}
+\begin{tabular}{|p{6cm} p{2cm} >{\RaggedLeft}p{6cm}|}
+\hline
+{\bf Cluster Head($n_{H_j}$)}&&{\bf Sensor Node($n_{L_i}$)}
+\\
+\scriptsize $x_j$ \in ${\mathbb{Z}^*}_q$&&
+\\
+\scriptsize $GK_j$=$HMAC(x_j,H_j)$&&
+\\
+
+\scriptsize $C_2$=$E_{k_{L_i H_j}}(GK_j,H_j,L_i)$&&
+\\
+\scriptsize $(H_j,C_2)$&\longrightarrow &
+\\
+&&\scriptsize Validate. If fails report to BS 
+\\
+&&\scriptsize Else Stores the Key\\
+&&\scriptsize $C_3$= $E_{k_{L_i H_j}}(L_i,HMAC(k_{L_i H_j},GK_j))$\\
+&\longleftarrow&\scriptsize  $(L_i,C_3)$ \\
+\scriptsize $L_i$ added to the member list &&\\
+ \hline
+\end{tabular}
+\caption{Cluster Key Generation}
+\end{table}
+\\
+\\
+\subsubsection{Membership Validation}
+After discovering all the neighboring nodes $n_{L_i}$ in the $j^{th}$ cluster, $n_{H_j}$ computes
+\begin{equation}
+C_4 = E_{{K^0}_{H_j}}(H_j,M_j) 
+\end{equation}
+and transmits $C_4$ and $H_j$ to the BS.
+After receiving messages from $n_{H_j}$, the BS checks the validity
+of the nodes listed in $M_j$. If all nodes are legitimate, the BS
+sends an acknowledgement to $n_{H_j}$. Otherwise, the BS rejects
+$M_j$ and investigates the identities of invalid nodes (false or
+duplicate ID). Then, the BS adds the identities of invalid nodes
+to the revocation list and reports it to $n_{H_j}$ . Upon receiving the
+acknowledge message, $n_{H_j}$ computes
+\begin{equation}
+C_5 = E_{GK_j}(H_j,M_j) 
+\end{equation}
+and broadcasts $C_5$ to all the nodes in $j^{th}$ cluster. The process can be summarized as below.
+\begin{table}[H]
+\label{tab1}
+\begin{tabular}{|p{6cm} p{2cm} >{\RaggedLeft}p{6cm}|}
+\hline
+{\bf Cluster Head($n_{H_j}$)}&&{\bf Base Station}
+\\
+\scriptsize  Member List&\longrightarrow &
+\\
+&&\scriptsize Validate Each Member Node
+\\
+
+&&\scriptsize Acknowledges Legitimate Nodes
+\\
+&&\scriptsize Revoke illegitimate Nodes
+\\
+\scriptsize Broadcast Acknowledged List &&
+\\
+ \hline
+\end{tabular}
+\caption{Membership Validation}
+\end{table}
+
+\subsection{Key Update}
+In order to protect against cryptanalysis and mitigate
+damage from compromised keys, frequent encryption key
+updates are commonly required.
+\subsubsection{Pairwise Key Update}
+To update a pairwise encryption
+key, two nodes which shared the pairwise key perform a
+Pairwise Encryption Key Establishment process. On the other
+hand, the pairwise master key does not require periodical
+updates, because it is not directly used to encrypt each session
+message. As long as the nodes are not compromised, the pair-
+wise master keys cannot be exposed. However, if a pairwise
+master key is modified or needs to be updated according to
+the policy of the BS, the Pairwise Master Key Establishment
+process must be executed.
+\subsubsection{Cluster Key Update}
+Only cluster head $H$-sensors can
+update their cluster key. If a $L$-sensor attempts to change
+the cluster key, the node is considered a malicious node.
+The operation for any $j^{th}$ cluster is described as follows:\\
+\\
+\begin{itemize}
+ \item $n_{H_j}$ chooses $x_j \in {Z^∗}_q$ and computes a new cluster key
+$G_{K_j} = HMAC(x_j,H_j)$. $n_{H_j}$ also generates an $Update
+Message$ including $HMAC(G_{K_j},Update)$ and computes
+$C_6=E_{G_{K_j}}(G_{K_j},HMAC(G_{K_j},Update))$. Then, $n_{H_j}$
+transmits Update and $C_6$ to its cluster members.\\
+\item Each member $n_{L_i}$ decrypts $C_6$ using the $GK_j$, verifies
+$HMAC(GK_j,Update)$ and updates a cluster key as $GK_j$.
+Then, each $n_{L_i}$ sends the acknowledgement message to $n_{H_j}$ .
+ 
+\end{itemize}
+
+\\Overall Process can be summarized as below:
+\begin{table}[H]
+\label{tab1}
+\begin{tabular}{|p{6cm} p{2cm} >{\RaggedLeft}p{6cm}|}
+\hline
+{\bf Cluster Head}&&{\bf Member Nodes}
+\\
+\scriptsize ${x^'}_j$ \in ${\mathbb{Z}^*}_q$&&
+\\
+\scriptsize ${GK'}_j$=$HMAC({x^'}_j,H_j)$&&
+\\
+\scriptsize Update message=$HMAC({GK^'}_j,Update)$&&
+\\
+\scriptsize $C_6$=$E_{GK_j}({GK^'}_j,HMAC({GK^'}_j,Update))$&&
+\\
+\scriptsize $(C_6,Update Message)$&\longrightarrow &
+\\
+&&\scriptsize Decrypt $C_6$ using $GK_j$
+\\
+&&\scriptsize Verify against $HMAC({GK^'}_j,Update)$
+\\
+&&\scriptsize Update Key and Acknowledge
+\\
+\hline
+\end{tabular}
+\caption{Cluster Key Update}
+\end{table}
+
+\subsection{Node Movement}
+When a node moves between clusters, the $H$-sensors
+must properly manage the cluster keys to ensure the
+forward/backward secrecy. Thus, the $H$-sensor updates the
+cluster key and notifies the BS of the changed node status.
+Through this report, the BS can immediately update the node
+status in the M. We denote a moving node as $n_{L_m}$.
+\subsubsection{Node Leave}
+A node may leave a cluster due to node
+failure, location change or intermittent communication failure.
+There are both proactive and reactive ways for the cluster head
+to detect when a node leaves the cluster. The proactive case
+occurs when the node $n_{L_m}$ actively decides to leave the cluster
+and notifies the cluster head $n_{H_j}$ or the cluster head decides
+to revoke the node. Since in this case $n_{H_j}$ can confirm that the
+node has left, it transmits a report $E_{{K^0}_{H_j}}(NodeLeave,L_m)$ to
+inform the BS that $n_{L_m}$ has left the cluster. After receiving
+the report, the BS updates the status of $n_{L_m}$ in M and sends
+an acknowledgement to $n_{H_j}$. The reactive case occurs when
+the cluster head $n_{H_j}$ fails to communicate with $n_{L_m}$. It may
+happen that a node dies out of battery power, fails to connect
+to $n_{H_j}$ due to interference or obstacles, is captured by the
+attacker or is moved unintentionally. Since the nodes in a
+cluster periodically exchange lightweight beacon messages,
+$n_{H_j}$ can detect a disappeared node $n_{L_m}$ when it does not
+receive the beacon message from $n_{L_m}$ for a predetermined
+time period. So, $n_{H_j}$ reports the status of the node $n_{L_m}$
+to the BS by sending $E_{{K^0}_{H_j}}(NodeDisappear,L_m)$. Above process can be summarized as below:
+
+\begin{table}[H]
+\label{tab1}
+\begin{tabular}{|p{8cm} p{2cm} >{\RaggedLeft}p{4cm}|}
+\hline
+{\bf Cluster Head}&&{\bf Base Station}
+\\
+\scriptsize $E_{{K^0}_{H_j}}(Node Leave,L_m)$ (Proactive)&\longrightarrow & \scriptsize BS Updates Member list
+\\
+\scriptsize $E_{{K^0}_{H_j}}(NodeDisappear,L_m)$ (Reactive)&\longrightarrow & \scriptsize BS Updates Member list
+\\
+&\longleftarrow&\scriptsize Acknowledgement
+\\
+\scriptsize Compute ${GK^'}_j$&&
+\\
+\scriptsize $E_{k_{L_i H_j}}({GK^'}_j,Node Leave,L_m)$ to all except $n_{L_m}$&&
+\\
+\hline
+\end{tabular}
+\caption{Key Management on Node Leave}
+\end{table}
+\subsubsection{Node Join}
+Once the moving node $n_{L_m}$ leaves a cluster,
+it may join other clusters or return to the previous cluster after
+some period. For the sake of simplicity, we assume that $n_{L_m}$
+wants to join the lth cluster or return to the $j^{th}$ cluster.
+If $n_{L_m}$ wants to join a new cluster, process is as follows:
+\begin{table}[H]
+\label{tab1}
+\begin{tabular}{|p{6cm} p{2cm} >{\RaggedLeft}p{6cm}|}
+\hline
+{\bf Node ($n_{L_m}$)}&&{\bf Cluster Head}
+\\
+\scriptsize($L_{n+1}$,$pk_{L_{n+1}}$)&\longrightarrow& \scriptsize Pairwise Key Generation
+\\
+&& \scriptsize $E_{{K^0}_{H_l}}(Node Join,L_m)$ to BS
+\\
+&&\scriptsize Cluster Key Update on Ack from BS
+\\
+&&\scriptsize Else cancel Pairwise Key
+\\
+\hline
+\end{tabular}
+\caption{Joining a New Cluster}
+\end{table}
+If $n_{L_m}$ wants to join a previous cluster above scenario changes. Once $n_{H_j}$ receives the join request, it checks a timer
+for $n_{L_m}$ which is initially set to the $T_{hold}$. $T_{hold}$ indicates
+the waiting time before discarding the pairwise master
+key when a $L$-sensor leaves. If returns to the previous
+cluster before the timer expires, they need to perform
+only the Pairwise Encryption Key Establishment proce-
+dure to create a new pairwise encryption key.
+Otherwise, they perform the Pairwise Key Generation
+procedure. Whole process can be summarized as below:
+\begin{table}[H]
+\label{tab1}
+\begin{tabular}{|p{6cm} p{2cm} >{\RaggedLeft}p{6cm}|}
+\hline
+{\bf Node ($n_{L_m}$)}&&{\bf Cluster Head}
+\\
+\scriptsize ($L_{n+1}$,$pk_{L_{n+1}}$)&\longrightarrow & \scriptsize Check Timer $T_{hold}$ with $n_{L_m}$
+\\
+& &\scriptsize In $T_{hold}$ Update Pairwise Encryption Key
+\\
+&&\scriptsize Else Pairwise Key Generation
+\\
+&&\scriptsize $E_{{K^0}_{H_j}}(Node ReJoin,L_m)$ to BS
+\\
+&&\scriptsize Cluster Key Update on Ack from BS
+\\
+\hline
+\end{tabular}
+\caption{Node Returns to a Previous Cluster}
+\end{table}
+\pagebreak
+\subsection{Addition of a New Node}
+\begin{itemize}
+\item This function is to add new nodes to an existing topology.
+\item BS must ensure that node is not compromised.
+\item Legitimate nodes then undergo Node Registration phase.
+\item System parameters are then stored into new node(say $n_{L_{n+1}}$).
+\item Message $E_{{K^0}_{H_j}}(New Node,L_{n+1},pk_{L_{n+1}})$ sent to each cluster head from BS
+\item New node then broadcasts to find nearby cluster head.
+\item Cluster heads returns response message to nodes.
+\item Node selects cluster by signal strength and distance.
+\item After, initiates pairwise key generation between selected cluster head and new node.
+\item Cluster head updates cluster key and send update to BS.
+\item BS update the Node's status in member list M.
+\end{itemize}
+\pagebreak
+\chapter{SYSTEM ANALYSIS}
+\label{chap:fut}
+\section{Security Analysis}
+It is not possible to forge or expose the
+full private key of an entity based on the difficulty of EC-CDH,
+without the knowledge of both KGC's master private key and
+an entity's secret value. Here, the confidentiality is defined
+as indistinguishability against adaptive chosen ciphertext and
+identity attacks while unforgeability is defined as existential unforgeability against adaptive chosen messages and identity attacks.
+\subsection{Compromise-Resilience of CL-EKM}
+Assume that an adversary captures a node $n_{L_i}$ in the
+$j^{th}$ cluster. This adversary can then extract the keys of $n_{L_i}$,
+such as the pairwise key shared with the cluster head $n_{H_j}$,
+the public/private key pair, the cluster key $G_{K_j}$, and the
+individual key. However, the pairwise master/encryption key
+generation between any two nodes are independent of others,
+and hence each pair of nodes has different pairwise keys.
+Therefore, even if the adversary manages to obtain $n_{L_i}$'s keys,
+it is unable to extract any information useful to compromise
+the pairwise keys of other uncompromised nodes. 
+\\Moreover,due to the intractability of EC-CDH problem, the adversary
+cannot obtain the KGC's master private key $x$ from $n_{L_i}$'s
+public/private keys $pk_{L_i}/sk_{L_i}$ . As a result, the compromise
+of a sensor does not affect the communication security among
+other $L$-sensors or $H$ -sensors. Even though the attacker can
+read the group communications within the cluster with the
+cluster key extracted from the compromised node, it cannot
+get any information about the cluster key of other clusters.
+\subsection{Resistance Against Cloning and Impersonation Attack}
+An adversary can conduct the cloning attack if a node is
+captured; the key is then extracted and the node is replicated
+in another neighbourhood. However, since the cluster head
+validates each node with the BS in the node join process of
+our CL-EKM, the BS is able to detect a cloned node when it
+is placed in an unintended cluster. After the BS investigates
+the cloned node, it revokes the node and notifies the node
+revocation to all cluster heads. Thus, although the cloned node
+may try to join other clusters, the cluster head will abort each
+attempt. Therefore, our scheme is resistant against the cloning
+attack.
+The adversary may also attempt an impersonation attack
+by inserting an illegitimate node $n_C$ . Assume that a node $n_C$
+poses as $n_{L_i}$ . The node ID $L_i$ and public key, $pk_{L_i}=
+(P_{L_i},R_{L_i})$ are publicly known within the network. Hence,
+$n_C$ can broadcast $L_i$ and $pk_{L_i}$ . When $n_{L_j}$ receives the
+message, it will compute the pairwise master key $K_{L_i L_j}$,
+and the encapsulated key information $ \varphi_{L_j} = (U_{L_j},W_{L_j})$
+towards establishing the pairwise Master key. \\As the next step,
+$n_{L_j}$ sends $ \varphi_{L_j}$,$L_j$,$pk_{L_j}$ to $n_C$ for decapsulation, which
+requires $n_C$ to compute $T_{L_j}$ as $(d_{L_i}·U_{L_j})$. However, $n_C$
+fails to compute $T_{L_j}$ since $n_C$ has no knowledge of $n_{L_i}$'s
+partial private key $d_{L_i}$. Moreover due to the intractability of
+EC-CDH, the adversary cannot forge $d_{L_i}$ without the knowledge of the KGC's master private key. Thus, $n_C$ is unable
+to generate a legitimate pairwise master key, $K_{L_i L_j}$ . \\
+However, $n_C$ may try to establish the pairwise encryption with a random
+key $K$ , rather than generating a legitimate master key. To this
+end, $n_C$ chooses a random nonce $r$ , computes an encryption
+key $k$ as $HMAC(r,K)$ and sends $r$, $E_k(r,L_i,L_j)$ to $n_{L_j}$.
+However, $n_C$ cannot successfully pass the validation at $n_{L_j}$,
+since $n_{L_j}$ first computes the pairwise encryption key with $n_{L_j}$ as $k_{L_i L_j}=HMAC(r,K_{L_i L_j})$ and then tries to decrypt
+$E_k(r,L_i,L_j)$ using $k_{L_i L_j}$. Thus, $n_{L_j}$ fails to decrypt and
+hence, it does not confirm the pairwise encryption key to $n_C$,
+which is then reported to the BS. Thus, CL-EKM is resistant
+against impersonation attacks.
+\subsection{Forward and Backward Secrecy}
+In CL-EKM, messages exchanged between nodes or within
+a cluster are encrypted with the pairwise encryption key or
+cluster key. CL-EKM provides the key update and revocation
+processes to ensure forward secrecy when a node leaves or
+compromised node is detected. Using key update process,
+CL-EKM ensures backward secrecy when a new node joins.
+Once a node is revoked from the network, all its keys are
+invalidated and the associated cluster key is updated. The
+cluster head sends the new cluster key to each cluster node,
+except the revoked node, by encrypting the key with the
+pairwise encryption key between the cluster and each intended
+node. Thus, the revoked node fails to decrypt any subsequent
+messages using the old pairwise encryption key or cluster key.
+When a node joins a cluster, the cluster head generates a new
+cluster key by choosing a new random value. Since the joined
+node receives the new cluster key, it cannot decrypt earlier
+messages encrypted using the older cluster keys.
+\subsection{Resistance Against Known-Key Attack}
+We assume that an adversary obtains the current pair-wise encryption key $k_{L_i H_j} = HMAC(K_{L_i H_j},r)$ between
+$n_{L_i}$ and $n_{H_j}$ and conducts the known-key attack. The adversary
+may attempt to extract the long term pairwise master key
+$K_{L_i H_j}$ using $k_{L_i H_j}$. However, due to the one-way feature
+of $HMAC(.)$, the adversary fails to learn $K_{L_i H_j}$. Also,
+when $n_{L_i}$ and $n_{H_j}$ update the pairwise encryption key as
+$k_{L_i H_j} = HMAC(K_{L_i H_j},r)$, the adversary cannot compute
+the updated pairwise encryption key $k_{L_i H_j}$, without the knowledge of $K_{L_i H_j}$. Thus, CL-EKM is resistant against known-key
+attack when the pairwise encryption key is compromised.
+\section{Performance Analysis}
+Here the individual performance of the three steps
+in the pairwise master/encryption key establishment process,
+namely, (i) encapsulation, (ii) decapsulation, and (iii) pairwise
+encryption key generation. Evaluate each step in terms
+of (i) computation time, and (ii) energy consumption.
+In this experiment, vary the processing power i.e. CPU
+clock rate of the sensors since heterogeneous WSNs with H-sensors being more powerful. Three different
+elliptic curves recommended by SECG (Standards for Efficient
+Cryptography Group) [30], i.e., (i) secp128r2 (128-bit ECC),
+(ii) secp160r1 (160-bit ECC), and (iii) secp192r1 (192-bit
+ECC), are used for the experiment.
+\\
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[scale=.2]{plot1.eps}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+\includegraphics[scale=.2]{plot2.eps}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+\includegraphics[scale=.2]{plot3.eps}
+\endminipage
+\caption{Comparsion based on Computational Time}
+\end{figure}
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[scale=.2]{plot4.eps}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+\includegraphics[scale=.2]{plot5.eps}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+\includegraphics[scale=.2]{plot6.eps}
+\endminipage
+\caption{Comparsion based on Energy Consumption}
+\end{figure}
+
+
+Fig. 5.1 shows the time for the pairwise key generation process, the processing time for the decapsulation and the computation times of the encapsulation process for
+various CPU clock rates of the sensor device. As expected, the pairwise master key generation takes most of the time due to the ECC operations. However, it is important to mention that
+the pairwise master key is used only to derive the short-term
+pairwise encryption key. Once two nodes establish the pairwise
+keys, they do not require further ECC operations. The computation
+time increases with the ECC key bit length. secp192r1 needs
+almost 1.5 times more time than secp160r1. secp128r2 takes
+approximately 4\% less time than secp160r1. If CPU clock
+rate is set to 25MHz and secp160r1 is adopted, 5.7 seconds
+are needed for encapsulation of key. Decapsulation requires
+about 1.57 times more CPU computation time than encap
+sulation. This is because decapsulation has six ECC point
+multiplications, whereas encapsulation includes only four ECC
+point multiplications. Finally, the computation time for pair-
+wise encryption key establishment is shown in Fig. 5.1.
+At 25MHz CPU clock rate, it requires 5 ms, which is neg-
+ligible compared to the first two steps. This is due to the fact
+that this step just needs one HMAC and one 128-bit AES
+operation.\\ Next, measure the energy consumption. As from Fig. 5.2, the faster the processing power (i.e. CPU
+clock rate) is, the more energy is consumed. However, as
+shown in Fig. 5.2, there is no difference
+between 16MHz and 25MHz while 25MHz results in faster
+computation than 16MHz. In addition, secp160r1 might be
+a good choice for elliptic curve selection, since it is more
+secure than secp128r2 and consumes reasonable CPU time and energy for WSNs.
+\pagebreak
+\clearpage
+\chapter{CONCLUSION AND FUTURE WORK}
+The System propose the first certificateless effective key
+management protocol (CL-EKM) for secure communication in
+dynamic WSNs. CL-EKM supports efficient communication
+for key updates and management when a node leaves or joins
+a cluster and hence ensures forward and backward key secrecy.
+This scheme is resilient against node compromise, cloning
+and impersonation attacks and protects the data confidentiality
+and integrity. The experimental results demonstrate the effi-
+ciency of CL-EKM in resource constrained WSNs. As future
+work,can formulate a mathematical model for energy
+consumption, based on CL-EKM with various parameters
+related to node movements. This mathematical model will be
+utilized to estimate the proper value for the $T_{hold}$ and $T_{backoff}$
+parameters based on the velocity and the desired tradeoff
+between the energy consumption and the security level.
+\pagestyle{empty}
+\begin{singlespace}
+  \bibliography{thesis}{}
+  \bibliographystyle{iitm}
+\end{singlespace} 
+\end{document}

@@ -1,0 +1,47 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.8)  24 JUL 2014 00:32
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**algpseudocode.sty
+(./algpseudocode.sty
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 2 languages loaded.
+
+LaTeX Warning: You have requested package `',
+               but the package provides `algpseudocode'.
+
+Package: algpseudocode 
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+) (./algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count79
+\c@ALG@rem=\count80
+\c@ALG@nested=\count81
+\ALG@tlm=\skip41
+\ALG@thistlm=\skip42
+\c@ALG@Lnr=\count82
+\c@ALG@blocknr=\count83
+\c@ALG@storecount=\count84
+\c@ALG@tmpcounter=\count85
+\ALG@tmplength=\skip43
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+)
+! Emergency stop.
+<*> algpseudocode.sty
+                     
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 531 strings out of 495028
+ 7352 string characters out of 6181498
+ 51804 words of memory out of 5000000
+ 3834 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 20i,0n,15p,258b,26s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

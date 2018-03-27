@@ -1,0 +1,149 @@
+\begin{thebibliography}{21}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{yea()}]{year={2004}
+
+
+\bibitem[{Agrawal {\em et~al.\/}(2012)Agrawal, Roman, Das, Mathuria, and
+  Lopez}]{gggkgkkh}
+{ Agrawal, S.}, { R.~Roman}, { M.~Das}, { A.~Mathuria}, and { J.~Lopez}, A
+  novel key update protocol in mobile sensor networks.
+\newblock {\em In\/} { V.~Venkatakrishnan} and { D.~Goswami} (eds.), {\em
+  Information Systems Security\/}, volume 7671 of {\em Lecture Notes in
+  Computer Science\/}. Springer Berlin Heidelberg, 2012.
+\newblock ISBN 978-3-642-35129-7, 194--207.
+\newblock \urlprefix\url{http://dx.doi.org/10.1007/978-3-642-35130-3_14}.
+
+\bibitem[{Al-Riyami and Paterson(2003)}]{al2003certificateless}
+{ Al-Riyami, S.~S.} and { K.~G. Paterson}, Certificateless public key
+  cryptography.
+\newblock {\em In\/} {\em Advances in Cryptology-ASIACRYPT 2003\/}. Springer,
+  2003, 452--473.
+
+\bibitem[{Alagheband and Aref(2012)}]{alagheband2012dynamic}
+{ Alagheband, M.~R.} and { M.~R. Aref} (2012).
+\newblock Dynamic and secure key management model for hierarchical
+  heterogeneous sensor networks.
+\newblock {\em IET Information Security\/}, { 6}(4), 271--280.
+
+\bibitem[{Chan {\em et~al.\/}(2003)Chan, Perrig, and Song}]{chan2003random}
+{ Chan, H.}, { A.~Perrig}, and { D.~Song}, Random key predistribution schemes
+  for sensor networks.
+\newblock {\em In\/} {\em Security and Privacy, 2003. Proceedings. 2003
+  Symposium on\/}. IEEE, 2003.
+
+\bibitem[{Chuang {\em et~al.\/}(2007)Chuang, Su, Wu, Hsu, and Kuo}]{4225002}
+{ Chuang, I.-H.}, { W.-T. Su}, { C.-Y. Wu}, { J.-P. Hsu}, and { Y.-H. Kuo},
+  Two-layered dynamic key management in mobile and long-lived cluster-based
+  wireless sensor networks.
+\newblock {\em In\/} {\em Wireless Communications and Networking Conference,
+  2007.WCNC 2007. IEEE\/}. 2007.
+\newblock ISSN 1525-3511.
+
+\bibitem[{Du {\em et~al.\/}(2012)Du, Xiong, and Wang}]{du2012efficient}
+{ Du, D.}, { H.~Xiong}, and { H.~Wang} (2012).
+\newblock An efficient key management scheme for wireless sensor networks.
+\newblock {\em International Journal of Distributed Sensor Networks\/}, {
+  2012}.
+
+\bibitem[{Du {\em et~al.\/}(2004)Du, Deng, Han, Chen, and Varshney}]{1354530}
+{ Du, W.}, { J.~Deng}, { Y.~Han}, { S.~Chen}, and { P.~Varshney}, A key
+  management scheme for wireless sensor networks using deployment knowledge.
+\newblock {\em In\/} {\em INFOCOM 2004. Twenty-third AnnualJoint Conference of
+  the IEEE Computer and Communications Societies\/}, volume~1. 2004.
+\newblock ISSN 0743-166X.
+
+\bibitem[{Du {\em et~al.\/}()Du, Deng, Han, Varshney, Katz, and
+  Khalili}]{du2005pairwise}
+{ Du, W.}, { J.~Deng}, { Y.~S. Han}, { P.~K. Varshney}, { J.~Katz}, and {
+  A.~Khalili} ().
+\newblock A pairwise key predistribution scheme for wireless sensor networks.
+\newblock {\em ACM Transactions on Information and System Security (TISSEC)\/},
+  { 8}.
+
+\bibitem[{Goldreich {\em et~al.\/}(1986)Goldreich, Goldwasser, and
+  Micali}]{goldreich1986construct}
+{ Goldreich, O.}, { S.~Goldwasser}, and { S.~Micali} (1986).
+\newblock How to construct random functions.
+\newblock {\em Journal of the ACM (JACM)\/}, { 33}(4), 792--807.
+
+\bibitem[{Goldsmith and Wicker(2002)}]{1028874}
+{ Goldsmith, A.} and { S.~Wicker} (2002).
+\newblock Design challenges for energy-constrained ad hoc wireless networks.
+\newblock {\em Wireless Communications, IEEE\/}, { 9}(4), 8--27.
+\newblock ISSN 1536-1284.
+
+\bibitem[{Huang {\em et~al.\/}(2003)Huang, Cukier, Kobayashi, Liu, and
+  Zhang}]{huang2003fast}
+{ Huang, Q.}, { J.~Cukier}, { H.~Kobayashi}, { B.~Liu}, and { J.~Zhang}, Fast
+  authenticated key establishment protocols for self-organizing sensor
+  networks.
+\newblock {\em In\/} {\em Proceedings of the 2nd ACM international conference
+  on Wireless sensor networks and applications\/}. ACM, 2003.
+
+\bibitem[{Khan {\em et~al.\/}(2011)Khan, Pastrone, Lavagno, and
+  Spirito}]{6061832}
+{ Khan, S.}, { C.~Pastrone}, { L.~Lavagno}, and { M.~Spirito}, An energy and
+  memory-efficient key management scheme for mobile heterogeneous sensor
+  networks.
+\newblock {\em In\/} {\em Risk and Security of Internet and Systems (CRiSIS),
+  2011 6th International Conference on\/}. 2011.
+
+\bibitem[{Marin-Perianu {\em et~al.\/}(2008)Marin-Perianu, Hurink, and
+  Hartel}]{4725240}
+{ Marin-Perianu, R.}, { J.~Hurink}, and { P.~Hartel}, A generalized clustering
+  algorithm for dynamic wireless sensor networks.
+\newblock {\em In\/} {\em Parallel and Distributed Processing with
+  Applications, 2008. ISPA '08. International Symposium on\/}. 2008.
+
+\bibitem[{Paradiso and Starner(2005)}]{1401839}
+{ Paradiso, J.} and { T.~Starner} (2005).
+\newblock Energy scavenging for mobile and wireless electronics.
+\newblock {\em Pervasive Computing, IEEE\/}, { 4}(1), 18--27.
+\newblock ISSN 1536-1268.
+
+\bibitem[{Rassam {\em et~al.\/}(2012)Rassam, Maarof, Zainal {\em
+  et~al.\/}}]{rassam2012survey}
+{ Rassam, M.~A.}, { M.~Maarof}, { A.~Zainal}, {\em et~al.\/} (2012).
+\newblock A survey of intrusion detection schemes in wireless sensor networks.
+\newblock {\em American Journal of Applied Sciences\/}, { 9}(10), 1636.
+
+\bibitem[{Seo and Bertino(2013)}]{seo2013elliptic}
+{ Seo, S.} and { E.~Bertino} (2013).
+\newblock Elliptic curve cryptography based certificateless hybrid signcryption
+  scheme without pairing.
+\newblock {\em CERIAS, West Lafayette, IN, USA, Tech. Rep. CERIAS TR\/}, { 10},
+  2013.
+
+\bibitem[{Seo {\em et~al.\/}(2015)Seo, Won, Sultana, and Bertino}]{6975235}
+{ Seo, S.-H.}, { J.~Won}, { S.~Sultana}, and { E.~Bertino} (2015).
+\newblock Effective key management in dynamic wireless sensor networks.
+\newblock {\em Information Forensics and Security, IEEE Transactions on\/}, {
+  10}(2), 371--383.
+\newblock ISSN 1556-6013.
+
+\bibitem[{Vanstone(1992)}]{nist}
+{ Vanstone, S.} (1992).
+\newblock Responses to nist's proposal.
+\newblock { 35}(7), 50--52.
+
+\bibitem[{Zhang {\em et~al.\/}(2011)Zhang, He, and
+  Wei}]{Zhang:2011:EED:1928796.1962414}
+{ Zhang, X.}, { J.~He}, and { Q.~Wei} (2011).
+\newblock Eddk: Energy-efficient distributed deterministic key management for
+  wireless sensor networks.
+\newblock {\em EURASIP J. Wirel. Commun. Netw.\/}, { 2011}, 12:1--12:11.
+\newblock ISSN 1687-1472.
+\newblock \urlprefix\url{http://dx.doi.org/10.1155/2011/765143}.
+
+\bibitem[{Zhang {\em et~al.\/}(2006)Zhang, Liu, Lou, and
+  Fang}]{zhang2006securing}
+{ Zhang, Y.}, { W.~Liu}, { W.~Lou}, and { Y.~Fang} (2006).
+\newblock Securing mobile ad hoc networks with certificateless public keys.
+\newblock {\em Dependable and Secure Computing, IEEE Transactions on\/}, {
+  3}(4), 386--399.
+
+\end{thebibliography}

@@ -1,0 +1,26 @@
+\contentsline {chapter}{ACKNOWLEDGEMENTS}{i}
+\contentsline {chapter}{ABSTRACT}{ii}
+\contentsline {chapter}{LIST OF TABLES}{v}
+\contentsline {chapter}{LIST OF FIGURES}{vi}
+\contentsline {chapter}{ABBREVIATIONS}{vii}
+\contentsline {chapter}{\numberline {1}INTRODUCTION}{1}
+\contentsline {chapter}{\numberline {2}LITERATURE SURVEY}{4}
+\contentsline {chapter}{\numberline {3}SYSTEM MODEL AND BACKGROUND}{7}
+\contentsline {section}{\numberline {3.1}Content Based Publish-Subscribe}{7}
+\contentsline {section}{\numberline {3.2}Attacker Model}{7}
+\contentsline {section}{\numberline {3.3}Security Goals and Requirements}{8}
+\contentsline {section}{\numberline {3.4}Identity Based Encryption}{9}
+\contentsline {chapter}{\numberline {4}APPROACH OVERVIEW}{11}
+\contentsline {chapter}{\numberline {5}CREATION OF CREDENTIALS}{13}
+\contentsline {section}{\numberline {5.1}Numeric Attributes}{13}
+\contentsline {chapter}{\numberline {6}PUBLISHER/SUBSCRIBER AUTHENTICATION AND EVENT CONFIDENTIALITY}{15}
+\contentsline {section}{\numberline {6.1}Security Parameters and Initialization}{15}
+\contentsline {section}{\numberline {6.2}Key Generation for Publishers/Subscribers}{16}
+\contentsline {section}{\numberline {6.3}Publishing and Receiving Events}{17}
+\contentsline {chapter}{\numberline {7}SUBSCRIPTION CONFIDENTIALITY}{18}
+\contentsline {section}{\numberline {7.1}Publish/Subscribe Overlay}{18}
+\contentsline {section}{\numberline {7.2}Weak Subscription Confidentiality}{19}
+\contentsline {section}{\numberline {7.3}Secure Overlay Maintenance}{20}
+\contentsline {section}{\numberline {7.4} Secure Event Dissemination}{21}
+\contentsline {chapter}{\numberline {8}PERFORMANCE EVALUATION}{23}
+\contentsline {chapter}{\numberline {9}CONCLUSION AND FUTURE WORK}{26}
